@@ -1,0 +1,322 @@
+/* Workbook Manager Styles with Glassmorphism */
+.workbook-manager {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  overflow-y: auto;
+}
+
+/* Breadcrumb Navigation */
+.workbook-breadcrumb {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.breadcrumb-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breadcrumb-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.breadcrumb-separator {
+  display: none; /* Hide separators in vertical layout */
+}
+
+/* Level Headers */
+.level-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.level-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Buttons */
+.add-btn, .back-btn {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.add-btn {
+  background: rgba(103, 126, 234, 0.8);
+  color: white;
+  border: 1px solid rgba(103, 126, 234, 0.3);
+}
+
+.add-btn:hover {
+  background: rgba(103, 126, 234, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(103, 126, 234, 0.3);
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* New Item Form */
+.new-item-form {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.new-item-form input {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.new-item-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.new-item-form input:focus {
+  outline: none;
+  border-color: rgba(103, 126, 234, 0.5);
+  box-shadow: 0 0 0 2px rgba(103, 126, 234, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-actions button {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.form-actions button:first-child {
+  background: rgba(103, 126, 234, 0.8);
+  color: white;
+}
+
+.form-actions button:first-child:hover {
+  background: rgba(103, 126, 234, 0.9);
+}
+
+.form-actions button:first-child:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-actions button:last-child {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-actions button:last-child:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Items Grid */
+.items-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Workbook Cards */
+.workbook-card {
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.workbook-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.workbook-card:hover::before {
+  opacity: 1;
+}
+
+.workbook-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.workbook-card h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.workbook-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Problem Cards */
+.problem-card {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.problem-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.problem-card h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.problem-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+}
+
+/* Working Level */
+.working-level {
+  padding: 20px 15px;
+}
+
+.working-hint {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  margin: 15px 0 0 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .workbook-manager {
+    padding: 15px;
+  }
+  
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .level-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .header-left {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .breadcrumb-item {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workbook-card, .problem-card {
+    padding: 15px;
+  }
+  
+  .new-item-form {
+    padding: 10px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}

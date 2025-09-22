@@ -46,14 +46,7 @@ body::before {
     grid-template-rows: minmax(140px, auto) repeat(5, 90px);
     gap: 16px;
     padding: 28px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 
-        0 8px 32px rgba(31, 38, 135, 0.37),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
 }
 
 .calculator-grid > button {
@@ -188,6 +181,74 @@ body::before {
 /* Number buttons get a subtle glow effect */
 .calculator-grid > button:not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(8)):not(:nth-child(12)):not(:nth-child(16)):not(:nth-child(20)) {
     background: rgba(255, 255, 255, 0.12);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calculator-container {
+        gap: 0.8rem;
+    }
+    
+    .keyboard-indicator {
+        padding: 10px 16px;
+        max-width: 350px;
+    }
+    
+    .indicator-text {
+        font-size: 0.8rem;
+    }
+    
+    .keyboard-hints {
+        font-size: 0.7rem;
+        gap: 6px;
+    }
+    
+    .keyboard-hints span {
+        padding: 3px 6px;
+    }
+    
+    .calculator-grid {
+        grid-template-columns: repeat(4, 70px);
+        grid-template-rows: minmax(110px, auto) repeat(5, 70px);
+        gap: 12px;
+        padding: 20px;
+    }
+    
+    .output {
+        padding: 1rem;
+    }
+    
+    .calculator-grid > button {
+        font-size: 1.2rem;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .keyboard-indicator {
+        max-width: 300px;
+        padding: 8px 12px;
+    }
+    
+    .keyboard-hints {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .calculator-grid {
+        grid-template-columns: repeat(4, 60px);
+        grid-template-rows: minmax(90px, auto) repeat(5, 60px);
+        gap: 8px;
+        padding: 16px;
+    }
+    
+    .calculator-grid > button {
+        font-size: 1.1rem;
+    }
+    
+    .output {
+        padding: 0.8rem;
+    }
 }
 
 .calculator-grid > button:not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(8)):not(:nth-child(12)):not(:nth-child(16)):not(:nth-child(20)):hover {

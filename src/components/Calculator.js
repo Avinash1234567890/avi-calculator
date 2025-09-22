@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
+import { useCalculator } from '../contexts/CalculatorContext'
 import '../styles/calculator.css'
 
 export const ACTIONS = {
@@ -129,10 +130,88 @@ function formatOperand(operand) {
 }
 
 function Calculator() {
+  const { updateCalculatorState } = useCalculator();
   const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
     reducer,
     {}
   )
+
+  // Update context whenever calculator state changes
+  useEffect(() => {
+    updateCalculatorState({
+      currentOperand,
+      previousOperand,
+      operation
+    });
+  }, [currentOperand, previousOperand, operation, updateCalculatorState]);
+
+  // Keyboard input handler
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      // Check if user is typing in an input field, textarea, or contenteditable element
+      const activeElement = document.activeElement;
+      const isTypingInInput = activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.contentEditable === 'true' ||
+        activeElement.isContentEditable
+      );
+      
+      // If user is typing in an input field, don't handle calculator keys
+      if (isTypingInInput) {
+        return;
+      }
+      
+      const key = event.key;
+      
+      // Prevent default behavior for calculator keys
+      if (/[0-9+\-*/=.]/.test(key) || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
+        event.preventDefault();
+      }
+
+      // Numbers and decimal point
+      if (/[0-9.]/.test(key)) {
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: key } });
+      }
+      
+      // Operations
+      if (key === '+') {
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation: '+' } });
+      }
+      if (key === '-') {
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation: '-' } });
+      }
+      if (key === '*') {
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation: '*' } });
+      }
+      if (key === '/') {
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation: '/' } });
+      }
+      
+      // Equals/Enter
+      if (key === '=' || key === 'Enter') {
+        dispatch({ type: ACTIONS.EVALUATE });
+      }
+      
+      // Clear (Escape)
+      if (key === 'Escape') {
+        dispatch({ type: ACTIONS.CLEAR });
+      }
+      
+      // Delete (Backspace)
+      if (key === 'Backspace') {
+        dispatch({ type: ACTIONS.DELETE_DIGIT });
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('keydown', handleKeyPress);
+    
+    // Cleanup event listener
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
 
   return (
     <div className="calculator-grid">
@@ -184,7 +263,7 @@ function Calculator() {
           dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation: "*" } })
         }
       >
-        *
+        ×
       </button>
       <button
         onClick={() =>
